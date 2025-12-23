@@ -63,5 +63,5 @@ class Sprite(pygame.sprite.Sprite):
                         keys=pygame.keys.get_pressed()
                         x_change=(keys[pygame.K_RIGHT]-keys[pygame.K_UP])
                     Movement_Speed
-                      y_change=(keys[pygame.K_DOWN]-keys[pygame.K_UP])
+                    y_change=(keys[pygame.K_DOWN]-keys[pygame.K_UP])
 
