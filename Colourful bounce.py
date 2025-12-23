@@ -45,9 +45,9 @@ class Sprite(pygame.sprite.Sprite):
             if self.rect.left<=0 or self.rect.right>=500:
                 self.velocity[0]=-self.velocity[0]
                 boundary_hit=True
-            #Check for collision with top or bottom boundaries and revers direction
-            if self.rect.top<=0 or self.rect.bottom>=400
-            self.velocity[1]=-self.velocity[1]
+                #Check for collision with top or bottom boundaries and revers direction
+                if self.rect.top<=0 or self.rect.bottom>=400:
+                  self.velocity[1]=-self.velocity[1]
             boundary_hit=True
             #If boundary was hit,post events to change colors
             if boundary_hit:
@@ -80,3 +80,38 @@ class Sprite(pygame.sprite.Sprite):
             #Set the initial background color
             bg_color=Blue
             #Apply background color
+            screen.fill(bg_color)
+
+            #Game loop control flag
+            exit=False
+            #Create a clock object to control frame rate
+            clock=pygame.time.Clock()
+
+            #Main game loop
+            while not exit:
+                #Event handling loop
+                for event in pygame.event.get():
+                #If the window's close button is clicked,exit the game
+                 if event.type==pygame.QUIT:
+                    exit=True
+                #If the sprite.color change event is triggered, change the sprite's color
+                 elif event.type==SPRITE_COLOR_CHANGE_EVENT:
+                     sp1.change_color()
+                #If the background color chnage event is triggered,change the background color
+                 elif event.type==BACKGROUND_COLOR_CHANGE_EVENT:
+                     change_background_color()
+                
+                #Update all sprites
+                all_sprites_list.update()
+                #Fill the screen with the current background color
+                screen.fill(bg_color)
+                #Draw all sprites to the screen
+                all_sprites_list.draw(screen)
+
+                #Refresh the display
+                pygame.display.flip()
+                #Limit the frame rate to 240 fps
+                clock.tick(240)
+
+#Uninitialize all pygame modules and close the window
+pygame.quit()
